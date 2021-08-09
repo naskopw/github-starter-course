@@ -10,7 +10,7 @@ class WelcomeToGit(unittest.TestCase):
         repo_dir.remove(Path(__file__).name)
         self.assertLessEqual(len(repo_dir), 1, "More than 1 python file found in the directory")
         self.assertEqual(len(repo_dir), 1, "No python file found in the directory")
-        p = subprocess.run(f"python {Path(repo_dir[0]).absolute()}", capture_output=True)
+        p = subprocess.run(f'python "{Path(repo_dir[0]).absolute()}"', capture_output=True, shell=True)
         self.assertEqual("Hello, Python".lower(), p.stdout.decode("UTF-8").strip().lower(), "Wrong output, try again!")
 
 
